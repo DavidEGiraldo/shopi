@@ -29,6 +29,9 @@ export default {
       fontFamily: {
         sans: ["Rubik", "sans-serif"],
         body: ["Inter", "sans-serif"]
+      },
+      backgroundColor: {
+        default: '#242933',
       }
     },
   },
