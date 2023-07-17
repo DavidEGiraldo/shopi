@@ -1,4 +1,5 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
+import { ShoppingCartProvider } from "../../Context";
 import Home from "../Home";
 import MyAccount from "../MyAccount";
 import MyOrder from "../MyOrder";
@@ -7,6 +8,7 @@ import NotFound from "../NotFound";
 import SignIn from "../SignIn";
 import Navbar from "../../Components/Navbar";
 import Layout from "../../Components/Layout";
+import Checkout from "../../Components/Checkout";
 import "./App.css";
 
 const AppRoutes = () => {
@@ -20,15 +22,18 @@ const AppRoutes = () => {
   ]);
   return routes;
 };
-
+ShoppingCartProvider;
 const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Layout>
-        <AppRoutes />
-      </Layout>
-    </BrowserRouter>
+    <ShoppingCartProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Checkout />
+        <Layout>
+          <AppRoutes />
+        </Layout>
+      </BrowserRouter>
+    </ShoppingCartProvider>
   );
 };
 

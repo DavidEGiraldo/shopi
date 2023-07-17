@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { ShoppingCartContext } from "../../Context";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
+  const { cart, setIsCheckoutOpen, setIsProductDetailOpen } =
+    useContext(ShoppingCartContext);
+
+  const openCheckout = () => {
+    setIsProductDetailOpen(false);
+    setIsCheckoutOpen(true);
+  };
+
   const activeStyle = "underline underline-offset-4";
 
   return (
-    <nav className="flex justify-between items-center py-4 px-8 text-nord-6 bg-nord-0 shadow-lg fixed top-0 w-full z-10">
+    <nav className="flex justify-between items-center py-4 px-8 text-nord-6 bg-nord-0 shadow-lg fixed top-0 w-full z-20">
       <ul className="flex items-center gap-4 text-lg">
         <li className="font-semibold text-2xl">
           <NavLink to="/">Shopi</NavLink>
@@ -85,7 +95,13 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li>🛒 0</li>
+        <li
+          className="flex gap-1 cursor-pointer"
+          onClick={() => openCheckout()}
+        >
+          <ShoppingCartIcon className="h-6 w-6"></ShoppingCartIcon>
+          <span>{cart.length}</span>
+        </li>
       </ul>
     </nav>
   );
