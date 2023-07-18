@@ -11,6 +11,13 @@ const ShoppingCartProvider = ({ children }) => {
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
+  const removeFromCart = (id) => {
+    const filteredProducts = cart.filter((product) => product.id !== id);
+    setCart(filteredProducts);
+  };
+
+  const [orders, setOrders] = useState([]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -22,6 +29,9 @@ const ShoppingCartProvider = ({ children }) => {
         setCart,
         isCheckoutOpen,
         setIsCheckoutOpen,
+        removeFromCart,
+        orders,
+        setOrders,
       }}
     >
       {children}
