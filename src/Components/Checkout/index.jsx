@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import { totalPrice } from "../../utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -10,13 +11,13 @@ const Checkout = () => {
     setIsCheckoutOpen,
     cart,
     setCart,
-    orders,
     setOrders,
   } = useContext(ShoppingCartContext);
 
   const handleCheckout = () => {
+    const date = new Date();
     const currentOrder = {
-      date: "18-07-2023",
+      date: date.toLocaleDateString(),
       products: cart,
       totalProducts: cart.length,
       totalPrice: totalPrice(cart),
@@ -24,6 +25,7 @@ const Checkout = () => {
 
     setOrders((state) => [...state, currentOrder]);
     setCart([]);
+    setIsCheckoutOpen(false);
   };
 
   return (
@@ -42,7 +44,7 @@ const Checkout = () => {
         </div>
         <div className="overflow-y-auto">
           {cart?.map((item) => (
-            <OrderCard key={item.id} {...item} />
+            <OrderCard key={item.id} checkout={true} {...item} />
           ))}
         </div>
       </div>
@@ -52,12 +54,14 @@ const Checkout = () => {
           <span>Total:</span>
           <span className="text-lg font-semibold">${totalPrice(cart)}</span>
         </p>
-        <button
-          className="bg-nord-7 w-full py-2 rounded-lg shadow-md"
-          onClick={() => handleCheckout()}
-        >
-          Checkout
-        </button>
+        <Link to="/my-orders/last">
+          <button
+            className="bg-nord-7 w-full py-2 rounded-lg shadow-md"
+            onClick={() => handleCheckout()}
+          >
+            Checkout
+          </button>
+        </Link>
       </div>
     </aside>
   );
