@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const ShoppingCartContext = createContext();
 
@@ -18,6 +18,38 @@ const ShoppingCartProvider = ({ children }) => {
 
   const [orders, setOrders] = useState([]);
 
+  const [items, setItems] = useState([]);
+
+  const [filteredItems, setFilteredItems] = useState([]);
+
+  const [searchByTitle, setSearchByTitle] = useState("");
+
+  const [searchByCategory, setSearchByCategory] = useState("");
+
+  useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/products")
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  const filteredItemsByCategory = (items, searchByCategory) => {
+    return items?.filter((item) =>
+      item.category.name.toLowerCase().includes(searchByCategory.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    const itemsByCategory = filteredItemsByCategory(items, searchByCategory);
+    const itemsToRender = filteredItemsByTitle(itemsByCategory, searchByTitle);
+    setFilteredItems(itemsToRender);
+  }, [items, searchByCategory, searchByTitle]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -32,6 +64,12 @@ const ShoppingCartProvider = ({ children }) => {
         removeFromCart,
         orders,
         setOrders,
+        items,
+        setItems,
+        searchByTitle,
+        setSearchByTitle,
+        filteredItems,
+        setSearchByCategory,
       }}
     >
       {children}

@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center py-4 px-8 text-nord-6 bg-nord-0 shadow-lg fixed top-0 w-full z-20">
       <ul className="flex items-center gap-4 text-lg">
-        <li className="font-semibold text-2xl">
+        <li className="font-semibold text-2xl text-nord-8">
           <NavLink to="/">Shopi</NavLink>
         </li>
         <li>
@@ -46,10 +46,10 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/furnitures"
+            to="/furniture"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Furnitures
+            Furniture
           </NavLink>
         </li>
         <li>
@@ -96,7 +96,9 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li
-          className="flex gap-1 cursor-pointer"
+          className={`flex gap-1 cursor-pointer ${
+            cart.length ? "text-nord-14" : ""
+          }`}
           onClick={() => openCheckout()}
         >
           <ShoppingCartIcon className="h-6 w-6"></ShoppingCartIcon>

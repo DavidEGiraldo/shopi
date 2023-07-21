@@ -1,23 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
-import { totalPrice } from "../../utils";
+import { totalPrice, currentformatDate } from "../../utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import OrderCard from "../OrderCard";
 
 const Checkout = () => {
-  const {
-    isCheckoutOpen,
-    setIsCheckoutOpen,
-    cart,
-    setCart,
-    setOrders,
-  } = useContext(ShoppingCartContext);
+  const { isCheckoutOpen, setIsCheckoutOpen, cart, setCart, setOrders } =
+    useContext(ShoppingCartContext);
 
   const handleCheckout = () => {
-    const date = new Date();
     const currentOrder = {
-      date: date.toLocaleDateString(),
+      date: currentformatDate(),
       products: cart,
       totalProducts: cart.length,
       totalPrice: totalPrice(cart),
