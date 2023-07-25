@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../Context";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
-  const { cart, setIsCheckoutOpen, setIsProductDetailOpen } =
+  const { cart, setIsCheckoutOpen, setIsProductDetailOpen, account, loggedIn, signOut } =
     useContext(ShoppingCartContext);
 
   const openCheckout = () => {
@@ -70,8 +70,8 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className="flex items-center gap-4">
-        <li className="text-nord-4">degiraldod@gmail.com</li>
-        <li>
+        <li className={`text-nord-4 ${loggedIn ? undefined :"hidden"}`}>{account.email}</li>
+        <li className={loggedIn ? undefined :"hidden"}>
           <NavLink
             to="/my-orders"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -79,7 +79,7 @@ const Navbar = () => {
             My Orders
           </NavLink>
         </li>
-        <li>
+        <li className={loggedIn ? undefined :"hidden"}>
           <NavLink
             to="/my-account"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -87,12 +87,12 @@ const Navbar = () => {
             My Account
           </NavLink>
         </li>
-        <li>
+        <li onClick={() => signOut()}>
           <NavLink
             to="/sign-in"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Sign In
+            {loggedIn ? "Sign Out" : "Sign In"}
           </NavLink>
         </li>
         <li

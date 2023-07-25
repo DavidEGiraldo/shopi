@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { ShoppingCartContext } from "../../Context";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const MyAccount = () => {
-  return <div>My Account</div>;
+  const [showPassword, setShowPassword] = useState(false)
+  const {account} = useContext(ShoppingCartContext)
+
+  return (
+    <>
+      <div className="flex justify-center items-center text-nord-6 font-semibold text-lg w-80 mb-4">
+        <h1>My Account</h1>
+      </div>
+      <form className="flex flex-col justify-center items-center gap-4 w-80 font-body text-nord-6" onSubmit={(event) => event.preventDefault()}>
+        <div className="flex flex-col gap-2 mb-6">
+          <div className="flex gap-2 w-full">
+            <span className="font-semibold">Name:</span>
+            <input type="text" value={account.name} className="overflow-hidden bg-transparent text-nord-4 outline-none" disabled/>
+          </div>
+          <div className="flex gap-2 w-full">
+            <span className="font-semibold">Email:</span>
+            <input type="text" value={account.email} className="overflow-hidden bg-transparent text-nord-4 outline-none" disabled/>
+          </div>
+          <div className="flex gap-2 w-80 relative">
+            <span className="font-semibold">Password:</span>
+            <input type={`${showPassword ? "text" : "password"}`} value={account.password} className="overflow-hidden bg-transparent text-nord-4 outline-none" disabled/>
+            <EyeSlashIcon className={`h-6 w-6 absolute right-2 my-auto cursor-pointer ${showPassword ? undefined : "hidden"}`} onClick={() => setShowPassword(state => !state)} />
+            <EyeIcon className={`h-6 w-6 absolute right-2 my-auto cursor-pointer ${showPassword ? "hidden" : undefined}`} onClick={() => setShowPassword(state => !state)}/>
+          </div>
+        </div>
+        <button type="submit" className="bg-nord-7 w-full py-2 rounded-lg shadow-md font-sans">Edit</button>
+      </form>
+    </>
+  )
 };
 
 export default MyAccount;

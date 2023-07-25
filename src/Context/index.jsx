@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import useLocalStorage from "../Hooks/useLocalStorage";
 
 const ShoppingCartContext = createContext();
 
@@ -50,6 +51,14 @@ const ShoppingCartProvider = ({ children }) => {
     setFilteredItems(itemsToRender);
   }, [items, searchByCategory, searchByTitle]);
 
+  const {
+    loggedIn,
+    account,
+    signUp,
+    signIn,
+    signOut,
+  } = useLocalStorage("logged-in", "account")
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -70,6 +79,11 @@ const ShoppingCartProvider = ({ children }) => {
         setSearchByTitle,
         filteredItems,
         setSearchByCategory,
+        loggedIn,
+        account,
+        signUp,
+        signIn,
+        signOut,
       }}
     >
       {children}
