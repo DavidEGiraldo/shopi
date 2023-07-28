@@ -18,9 +18,9 @@ const AccountForm = (props) => {
       password: event.target[2].value,
     };
     signUp(account);
-    props?.setShowEdit(false);
+    if (Object.keys(props).length) props.setShowEdit(false);
+    if (loggedIn === false) navigate("/sign-in");
     if (loggedIn) navigate("/my-account");
-    else navigate("/sign-in");
   };
 
   return (
@@ -75,7 +75,7 @@ const AccountForm = (props) => {
         type="submit"
         className="bg-nord-7 w-full py-2 rounded-lg shadow-md font-sans"
       >
-        {props?.showEdit ? "Edit" : "Sign Up"}
+        {(props.showEdit && "Edit") || "Sign Up"}
       </button>
     </form>
   );

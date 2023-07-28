@@ -6,10 +6,6 @@ import { ShoppingCartContext } from "../../Context";
 const SignUp = () => {
   const { loggedIn } = useContext(ShoppingCartContext);
 
-  const handleOnSubmit = (event) => {
-    event.preventDefault();
-  };
-
   if (loggedIn) return <Navigate to={"/"} replace />;
 
   return (

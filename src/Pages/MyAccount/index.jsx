@@ -25,7 +25,7 @@ const MyAccount = () => {
               <span className="font-semibold">Name:</span>
               <input
                 type="text"
-                value={account.name}
+                defaultValue={account.name}
                 className="overflow-hidden bg-transparent text-nord-4 outline-none"
                 disabled
               />
@@ -34,7 +34,7 @@ const MyAccount = () => {
               <span className="font-semibold">Email:</span>
               <input
                 type="text"
-                value={account.email}
+                defaultValue={account.email}
                 className="overflow-hidden bg-transparent text-nord-4 outline-none"
                 disabled
               />
@@ -43,7 +43,7 @@ const MyAccount = () => {
               <span className="font-semibold">Password:</span>
               <input
                 type={`${showPassword ? "text" : "password"}`}
-                value={account.password}
+                defaultValue={account.password}
                 className="overflow-hidden bg-transparent text-nord-4 outline-none"
                 disabled
               />

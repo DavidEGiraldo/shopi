@@ -28,7 +28,7 @@ function SignIn() {
             <span className="font-semibold">Email:</span>
             <input
               type="text"
-              value={account.email}
+              defaultValue={account.email}
               className="overflow-hidden bg-transparent text-nord-4 outline-none"
               disabled
             />
@@ -37,7 +37,7 @@ function SignIn() {
             <span className="font-semibold">Password:</span>
             <input
               type={`${showPassword ? "text" : "password"}`}
-              value={account.password}
+              defaultValue={account.password}
               className="overflow-hidden bg-transparent text-nord-4 outline-none pr-10"
               disabled
             />

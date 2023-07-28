@@ -32,7 +32,7 @@ const Navbar = () => {
     <nav className="flex justify-between items-center py-4 px-8 text-nord-6 bg-nord-0 shadow-lg fixed top-0 w-full z-20">
       <ul className="flex items-center gap-4 text-lg justify-between w-full min-[1024px]:hidden">
         <li className="cursor-pointer" onClick={() => toggleMobileMenu()}>
-          <Bars3Icon className="h-6 w-6" on />
+          <Bars3Icon className="h-6 w-6" />
         </li>
         <li className="font-semibold text-2xl text-nord-8">
           <NavLink to="/">Shopi</NavLink>
