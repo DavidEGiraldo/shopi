@@ -12,6 +12,8 @@ const ShoppingCartProvider = ({ children }) => {
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const removeFromCart = (id) => {
     const filteredProducts = cart.filter((product) => product.id !== id);
     setCart(filteredProducts);
@@ -51,13 +53,10 @@ const ShoppingCartProvider = ({ children }) => {
     setFilteredItems(itemsToRender);
   }, [items, searchByCategory, searchByTitle]);
 
-  const {
-    loggedIn,
-    account,
-    signUp,
-    signIn,
-    signOut,
-  } = useLocalStorage("logged-in", "account")
+  const { loggedIn, account, signUp, signIn, signOut } = useLocalStorage(
+    "logged-in",
+    "account"
+  );
 
   return (
     <ShoppingCartContext.Provider
@@ -84,6 +83,8 @@ const ShoppingCartProvider = ({ children }) => {
         signUp,
         signIn,
         signOut,
+        isMobileMenuOpen,
+        setIsMobileMenuOpen,
       }}
     >
       {children}

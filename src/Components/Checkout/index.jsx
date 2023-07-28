@@ -26,7 +26,7 @@ const Checkout = () => {
     <aside
       className={`${
         isCheckoutOpen ? "flex" : "hidden"
-      } w-[360px] h-full flex flex-col justify-between fixed right-0 top-0 pt-20 px-6 bg-nord-1 shadow-lg text-nord-6 rounded-lg z-10`}
+      } sm:w-[360px] w-full h-full flex flex-col justify-between fixed right-0 top-0 pt-20 px-6 bg-nord-1 shadow-lg text-nord-6 rounded-lg z-10`}
     >
       <div>
         <div className="flex justify-between items-center pb-6">

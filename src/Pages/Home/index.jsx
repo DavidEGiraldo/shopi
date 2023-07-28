@@ -34,7 +34,7 @@ const Home = () => {
           onChange={(event) => setSearchByTitle(event.target.value)}
         />
       </div>
-      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
+      <div className="grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 w-full lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm justify-items-center">
         {filteredItems?.map((item) => (
           <Card key={item.id} data={item} />
         ))}
