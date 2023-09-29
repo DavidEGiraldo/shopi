@@ -10,7 +10,7 @@ Todo Machine es una aplicación web que simula una tienda de E-commerce. Desarro
 - Visualizar el historial de órdenes.
 - Interfaz de usuario amigable y receptiva.
 - Los datos de los productos son obtenidos a través de la API [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/).
-- Despliegue en línea: Visita la [demostración](https://davidegiraldo.github.io/todo-machine/) en Netlify.
+- Despliegue en línea: Visita la [demostración](https://degiraldod-shopi.netlify.app/) en Netlify.
 
 ## Contribuciones
 
